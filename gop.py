@@ -27,6 +27,7 @@ def get_open_port(file,output):
     time.sleep(4)
 def ip_open_port(ip):
     try:
+        ip = ip.replace(' ','')
         response = requests.get(f"https://internetdb.shodan.io/{ip}")
         ips = [f"{ip}:{port}" for port in response.json()['ports']]
         queue.put(ips)
